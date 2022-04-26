@@ -1,0 +1,113 @@
+nav {
+    width: 100vw;
+    height: 6.1rem;
+
+    background-color: #fafafa;
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    z-index: 10;
+
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-bottom: 0.1rem solid #dddddd;
+
+    aside {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 1rem;
+
+        #burger-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            width: 4rem;
+            height: 4rem;
+
+            border-radius: 0.5rem;
+
+            margin-right: 1rem;
+
+            .patty {
+                display: block;
+                width: 3rem;
+                height: 0.3rem;
+                background-color: #151212;
+            }
+
+            .patty-mid {
+                margin: 0.5rem 0;
+            }
+        }
+
+        #logo-name {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-family: "Fugaz One", cursive;
+
+            img {
+                width: 7rem;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+
+    ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 1.5rem;
+
+        li {
+            width: auto;
+            height: auto;
+
+            &:first-of-type {
+                margin-right: 1.5rem;
+                border: 1px solid #ec7665;
+                border-radius: 0.5rem;
+                padding: 0.5rem;
+
+                a {
+                    width: 2.3rem !important;
+                    height: 2.3rem !important;
+                }
+            }
+
+            a {
+                width: 3.5rem;
+                height: 3.5rem;
+                display: block;
+                overflow: hidden;
+                border-radius: 0.5rem;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            .message-info {
+                &::after {
+                    content: "";
+                    width: 1rem;
+                    height: 1rem;
+                    border-radius: 1rem;
+                    background-color: red;
+                }
+            }
+        }
+    }
+}
