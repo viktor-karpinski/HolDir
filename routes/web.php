@@ -26,11 +26,13 @@ Route::post('/changeEmail/', [Controller::class, 'changeEmail'])->name('changeEm
 Route::get('/upload/', [Controller::class, 'viewUpload']);
 Route::post('/upload/', [Controller::class, 'upload'])->name('upload');
 
-Route::get('/article/', [Controller::class, 'viewArticle']);
-Route::get('/article/{id}', [Controller::class, 'viewArticle']);
+Route::get('/article/{id?}', [Controller::class, 'viewArticle']);
+Route::get('/delete/{id}', [Controller::class, 'deleteArticle']);
+Route::get('/edit/{id?}', [Controller::class, 'viewEditArticle']);
+Route::post('/edit/{id?}', [Controller::class, 'editArticle']);
 
 Route::get('/about/', [Controller::class, 'about']);
 
 Route::get('/impressum/', [Controller::class, 'impressum']);
 
-Route::get('/help/', [Controller::class, 'help']);
+Route::get('/hilfe/', [Controller::class, 'help']);

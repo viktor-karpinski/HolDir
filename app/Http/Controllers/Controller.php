@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\File;
 
 use App\Models\User;
 use App\Models\Article;
@@ -110,10 +110,43 @@ class Controller extends BaseController
 
     public function viewArticle($id = null)
     {
+        if ($id === null) {
+            return redirect('/');
+        }
         $article = Article::where('id', '=', $id)->first();
         $images = ArticleImages::where('article_id', '=', $article->id)->get();
         $user = User::where('id', '=', $article->user_id)->first();
         return view('article', ['article' => $article, 'images' => $images, 'user' => $user]);
+    }
+
+    public function deleteArticle($id = null)
+    {
+        if ($id !== null) {
+            $article = Article::where('id', '=', $id)->first();
+            $user = User::where('email', '=', Session::get('user'))->first();
+            if ($article->user_id === $user->id) {
+                $images = ArticleImages::where('article_id', '=', $article->id)->get();
+                foreach ($images as $image) {
+                    File::delete(public_path('/article_images/' . $image->name));
+                    $image->delete();
+                }
+                $article->delete();
+                return redirect('profile');
+            }
+        }
+        return back();
+    }
+
+    public function viewEditArticle($id = null)
+    {
+        if ($id !== null) {
+            $article = Article::where('id', '=', $id)->first();
+            $user = User::where('email', '=', Session::get('user'))->first();
+            if ($article->user_id === $user->id) {
+                return view('edit', ['article' => $article]);
+            }
+        }
+        return back();
     }
 
     public function about()
@@ -126,7 +159,7 @@ class Controller extends BaseController
     }
     public function help()
     {
-        return view('hilfe');
+        return view('help');
     }
 
     /* ############ ############ FUNCTIONS ############ ############*/

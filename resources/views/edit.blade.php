@@ -1,25 +1,12 @@
 @extends('master')
 
 @section('content')
-<br>
-<div id="image-box" for="file">
-    <label class="placeholder" for="file">
-    </label>
-</div>
-
-<div class="reset-button-box">
-    <button id="reset-file">
-        Reset
-    </button>
-</div>
-<script src="{{ asset('js/image.js') }}"></script>
-
 <article id="form-box">
     <h1>
         Artikel / Dienst hochladen
     </h1>
 
-    <form class="input-form" id="upload-form" action="/upload/" data-action="/profile/" data-ids="#upload-name,#upload-description" enctype="multipart/form-data">
+    <form class="input-form" id="upload-form" action="/upload/" data-action="/profile/" data-ids="#upload-name" enctype="multipart/form-data">
         @csrf
         <input type="file" multiple name="pictures[]" accept="image/*" id="file" required>
         <script src="{{ asset('js/file.js') }}"></script>
@@ -32,7 +19,7 @@
                     0 / 64
                 </span>
             </div>
-            <input class="input-text" id="upload-name" type="text" placeholder="Taschenrechner" name="name" autocomplete="off">
+            <input class="input-text" id="upload-name" type="text" placeholder="Taschenrechner" name="name" autocomplete="off" value="{{ $article->name }}">
             <p class="regex-box" for="upload-name" data-regex="^[a-zA-Z0-9üÜöÖäÄ,._#+*/!(){}\-;: ]{3,}$">
                 Mindestens 3 Zeichen
             </p>
@@ -51,6 +38,11 @@
         <input type="radio" name="type" id="service" value="0">
 
         <script src="{{ asset('js/search.js') }}"></script>
+        @if($article->type === 0)
+            <script>
+                $('label[for="service"]').trigger('click')
+            </script>
+        @endif
         <br>
         <br>
         <div class="input-box">
@@ -59,7 +51,7 @@
                     Preis (in €)
                 </label>
             </div>
-            <input class="input-text" id="upload-price" min="1" type="number" required placeholder="20" name="price" autocomplete="off">
+            <input class="input-text" id="upload-price" min="1" type="number" value="{{ $article->price }}" required placeholder="20" name="price" autocomplete="off">
         </div>
         <br>
         <div class="input-box">
@@ -68,10 +60,10 @@
                     Beschreibung
                 </label>
                 <span for="upload-description" max="128">
-                    0 / 128
+                    0 / 255
                 </span>
             </div>
-            <textarea class="input-text" id="upload-description" type="text" placeholder="Ein sehr gutes..." name="description"></textarea>
+            <textarea class="input-text" id="upload-description" type="text" placeholder="Ein sehr gutes..." name="description">{{ $article->description }}</textarea>
         </div>
         
         <br><br>
@@ -80,10 +72,27 @@
         </button>
     </form>
 </article>
+<article id="form-box">
+    <h1 style="text-align:center">
+        Achtung! Wenn du neue Bilder auswählst, dann werden die alten gelöscht!
+    </h1>
+</article>
+<br>
+<div id="image-box" for="file">
+    <label class="placeholder" for="file">
+    </label>
+</div>
+<div class="reset-button-box">
+    <button id="reset-file">
+        Reset
+    </button>
+</div>
+
+<script src="{{ asset('js/image.js') }}"></script>
 
 <script src="{{ asset('js/form.js') }}"></script>
 <script>
-$('#upload-name, #upload-description').on('keyup', () => {
+$('#upload-name').on('keyup', () => {
     checkForm($('#upload-form'))
 })
 $('#upload-form').on('submit', (ev) => {

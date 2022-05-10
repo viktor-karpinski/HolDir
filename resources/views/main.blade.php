@@ -31,7 +31,7 @@
     </h1>
     <br>
     <p>
-        5 Jungs aus der 4AX, welche sich der Herausforderung gestellt haben, eine Webseite zu erstellen, um den Schülern zu ermöglichen ihre Sachen zu verkaufen. Jeder von uns braucht was, also HolDir. Wir hoffen euch gefällts!
+        5 Jungs aus der 4AX, welche sich der Herausforderung gestellt haben, eine Webseite zu erstellen, um den Schülern zu ermöglichen ihre Sachen zu verkaufen. Jeder von uns braucht was, also HolDir.
     </p>
 </a>
 </article>

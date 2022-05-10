@@ -33,6 +33,11 @@
             GibWeg 
             <span>(löschen)</span>
         </a>
+        <br>
+        <a class="button" href="/edit/{{ $article->id }}">
+            MachAnders
+            <span>(bearbeiten)</span>
+        </a>
     @else
         <a class="button" href="/contact/{{ $article->id }}">
             HolDir 
