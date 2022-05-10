@@ -17,13 +17,28 @@
     <h2>
         {{ $article->price }}€
     </h2>
+    @if (strlen($article->description) > 0)
+        <br>
+        <p class="description">
+            {{ $article->description }}
+        </p>
+    @endif
     <br>
     <p>
-        {{ $article->description }}
+        <b>Verkäufer:</b> <a href="/profile/{{ $user->id }}">{{ $user->name }}</a>
     </p>
-    <button>
-        Kontaktieren
-    </button>
+    <br><br>
+    @if ($user->email === Session::get('user'))
+        <a class="button" href="/delete/{{ $article->id }}">
+            GibWeg 
+            <span>(löschen)</span>
+        </a>
+    @else
+        <a class="button" href="/contact/{{ $article->id }}">
+            HolDir 
+            <span>(kontaktieren)</span>
+        </a>
+    @endif
 </article>
 
 @endsection

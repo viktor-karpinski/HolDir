@@ -3,7 +3,7 @@
 @section('content')
 <form id="search-form" method="GET" action="/search/">
     <label for="search">
-        <input type="text" autocomplete="off" required="true" name="search" id="search" placeholder="Was suchst du?">
+        <input type="text" autocomplete="off" required="true" name="s" id="search" placeholder="Was suchst du?">
         <button type="submit">
         <img src="{{ asset('images/search.png') }}">
         </button>
@@ -17,8 +17,8 @@
             Dienste
         </label>
     </div>
-    <input type="radio" name="type" id="article" value="article" checked>
-    <input type="radio" name="type" id="service" value="service">
+    <input type="radio" name="t" id="article" value="a" checked>
+    <input type="radio" name="t" id="service" value="s">
 
     <script src="{{ asset('js/search.js') }}"></script>
 </form>
@@ -31,103 +31,30 @@
     </h1>
     <br>
     <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        5 Jungs aus der 4AX, welche sich der Herausforderung gestellt haben, eine Webseite zu erstellen, um den Schülern zu ermöglichen ihre Sachen zu verkaufen. Jeder von uns braucht was, also HolDir. Wir hoffen euch gefällts!
     </p>
 </a>
 </article>
 
 <article id="article-box">
-
-    <a class="article" href="">
-        <div class="place-holder"></div>
-        <div class="info-holder">
-            <h2>
-                Taschenrechner
-            </h2>
-            <p>
-                50€
-            </p>
-
-        </div>
-    </a>
-
-    <a class="article" href="">
-        <div class="place-holder"></div>
-        <div class="info-holder">
-            <h2>
-                Taschenrechner
-            </h2>
-            <p>
-                50€
-            </p>
-
-        </div>
-    </a>
-
-    <a class="article" href="">
-        <div class="place-holder"></div>
-        <div class="info-holder">
-            <h2>
-                Taschenrechner
-            </h2>
-            <p>
-                50€
-            </p>
-
-        </div>
-    </a>
-
-    <a class="article" href="">
-        <div class="place-holder"></div>
-        <div class="info-holder">
-            <h2>
-                Taschenrechner
-            </h2>
-            <p>
-                50€
-            </p>
-
-        </div>
-    </a>
-
-    <a class="article" href="">
-        <div class="place-holder"></div>
-        <div class="info-holder">
-            <h2>
-                Taschenrechner
-            </h2>
-            <p>
-                50€
-            </p>
-
-        </div>
-    </a>
-
-    <a class="article" href="">
-        <div class="place-holder"></div>
-        <div class="info-holder">
-            <h2>
-                Taschenrechner
-            </h2>
-            <p>
-                50€
-            </p>
-
-        </div>
-    </a>
-
-    <a class="article" href="">
-        <div class="place-holder"></div>
-        <div class="info-holder">
-            <h2>
-                Taschenrechner
-            </h2>
-            <p>
-                50€
-            </p>
-
-        </div>
-    </a>
+    @foreach ($articles as $article)
+        <a 
+            class="article" 
+            href="/article/{{ $article->id }}" 
+            id="{{ $article->id }}"
+            style="background-image: url('{{ asset('article_images/'. $images[$loop->index+1]->name) }}')"
+            >
+            <div class="place-holder"></div>
+            <div class="info-holder">
+                <h2>
+                    {{ $article->name }}
+                </h2>
+                <p>
+                    {{ $article->price }}€
+                </p>
+            </div>
+        </a>
+    @endforeach
 </article>
 <article id="next-box">
     <a href="" class="disabled">

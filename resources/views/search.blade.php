@@ -1,29 +1,28 @@
 @extends('master')
 
 @section('content')
-<article id="about">
-    <h1>
-        {{ $user->name }}
-    </h1>
-    <br>
-    <p>
-        <b>
-            E-Mail:
-        </b>
-        {{ $user->email }}
-    </p>
-    @if ($user->email === Session::get('user'))
-    <br>
-    <a class="button small" href="/settings/">
-        Bearbeiten
-    </a>
-    <br>
-    <br>
-    <a class="link" href="/logout/">
-        logout
-    </a>
-    @endif
-</article>
+<form id="search-form" method="GET" action="/search/">
+    <label for="search">
+        <input type="text" autocomplete="off" required="true" name="s" id="search" placeholder="Was suchst du?">
+        <button type="submit">
+        <img src="{{ asset('images/search.png') }}">
+        </button>
+    </label>
+    <div class="radio-box">
+        <div id="mover"></div>
+        <label for="article">
+            Artikel
+        </label>
+        <label for="service">
+            Dienste
+        </label>
+    </div>
+    <input type="radio" name="t" id="article" value="a" checked>
+    <input type="radio" name="t" id="service" value="s">
+
+    <script src="{{ asset('js/search.js') }}"></script>
+</form>
+<br>
 <article id="article-box">
     @foreach ($articles as $article)
         <a 

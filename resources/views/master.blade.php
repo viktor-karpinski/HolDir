@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/berlin-sans-fb-demi" rel="stylesheet">
 
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <script src="{{ asset('js/jquery.js') }}"></script>

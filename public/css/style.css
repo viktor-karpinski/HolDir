@@ -35,7 +35,7 @@ h1 {
 }
 
 h1 span {
-  font-family: "Fugaz One", cursive;
+  font-family: "berlin sans fb demi", cursive;
   font-size: 2rem;
 }
 
@@ -136,7 +136,7 @@ nav aside #logo-name {
       -ms-flex-align: center;
           align-items: center;
   font-size: 2rem;
-  font-family: "Fugaz One", cursive;
+  font-family: "berlin sans fb demi", cursive;
 }
 
 nav aside #logo-name img {
@@ -303,12 +303,79 @@ nav ul li .message-info::after {
   border-radius: 0.5rem;
 }
 
+#about p b {
+  font-weight: 900;
+  font-size: 1.6rem;
+}
+
+#about p.description {
+  background-color: rgba(200, 200, 200, 0.3);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+#about p a {
+  font-size: 1.6rem;
+}
+
+#about a.link {
+  color: #ec7565;
+  font-size: 1.3rem;
+  text-align: center;
+  display: block;
+}
+
+#about a.button {
+  font-family: "berlin sans fb demi", cursive;
+  font-size: 2rem;
+  width: 100%;
+  background-color: #ec7565;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  height: 6rem;
+  border-radius: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 1rem;
+}
+
+#about a.button span {
+  margin-top: -0.2rem;
+}
+
+#about a.button.small {
+  height: 5rem !important;
+  padding-top: 0rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: "Open Sans";
+}
+
+#about a.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+#about a.button:focus {
+  -webkit-box-shadow: 0px 0px 0px 0.3rem rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 0px 0.3rem rgba(0, 0, 0, 0.2);
+}
+
 #article-box {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: auto auto;
-      grid-template-columns: auto auto;
-  grid-column-gap: 1rem;
+  -ms-grid-columns: 48% 48%;
+      grid-template-columns: 48% 48%;
+  grid-column-gap: 4%;
   grid-row-gap: 1rem;
 }
 

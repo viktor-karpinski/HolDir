@@ -26,12 +26,20 @@ class Controller extends BaseController
 
     public function main()
     {
-        return view('main');
+        $articles = Article::orderBy('id', 'desc')->skip(0)->take(10)->get();
+        $images = $this->getImages($articles);
+        return view('main', ['articles' => $articles, 'images' => $images]);
     }
 
-    public function search($search = null)
+    public function search(Request $req)
     {
-        return view('search');
+        $type = ($req->input('t') === 'a') ? 1 : 0;
+        $articles = Article::where([
+            ['name', 'LIKE', '%' . $req->input('s') . '%'],
+            ['type', '=', $type]
+        ])->skip(0)->take(10)->get();
+        $images[] = $images = $this->getImages($articles);
+        return view('search', ['articles' => $articles, 'images' => $images]);
     }
 
     public function viewLogin()
@@ -65,14 +73,30 @@ class Controller extends BaseController
         }
     }
 
+    public function viewSettings()
+    {
+        if ($this->isLoggedIn()) {
+            $user = User::where('email', '=', Session::get('user'))->first();
+            return view('settings', ['user' => $user]);
+        } else {
+            return redirect('login');
+        }
+    }
+
     public function giveProfileArticles($user)
     {
-        $articles = Article::where('user_id', '=', $user->id)->orderBy('id', 'DESC')->get();
+        $articles = Article::where('user_id', '=', $user->id)->orderBy('id', 'DESC')->skip(0)->take(10)->get();
+        $images = $this->getImages($articles);
+        return view('profile', ['user' => $user, 'articles' => $articles, 'images' => $images]);
+    }
+
+    public function getImages($articles)
+    {
         $images[] = null;
         foreach ($articles as $article) {
             $images[] = ArticleImages::where('article_id', '=', $article->id)->first();
         }
-        return view('profile', ['user' => $user, 'articles' => $articles, 'images' => $images]);
+        return $images;
     }
 
     public function viewUpload()
@@ -88,7 +112,8 @@ class Controller extends BaseController
     {
         $article = Article::where('id', '=', $id)->first();
         $images = ArticleImages::where('article_id', '=', $article->id)->get();
-        return view('article', ['article' => $article, 'images' => $images]);
+        $user = User::where('id', '=', $article->user_id)->first();
+        return view('article', ['article' => $article, 'images' => $images, 'user' => $user]);
     }
 
     public function about()
@@ -233,6 +258,45 @@ class Controller extends BaseController
             }
         }
 
+        return '2';
+    }
+
+    public function changeName(Request $req)
+    {
+        if ($this->isLoggedIn()) {
+            $user = User::where('email', '=', Session::get('user'))->first();
+            if ($user->name !== $req->name) {
+                $req->validate([
+                    'name' => 'required|min:4|max:64|regex:/^[a-zA-Z0-9 ]{3,}$/u',
+                ]);
+                $user->name = htmlspecialchars($req->name);
+                if ($user->save()) {
+                    return '1';
+                }
+                return '2';
+            }
+            return '1';
+        }
+        return '2';
+    }
+
+    public function changeEmail(Request $req)
+    {
+        if ($this->isLoggedIn()) {
+            $user = User::where('email', '=', Session::get('user'))->first();
+            if ($user->email !== $req->email) {
+                $req->validate([
+                    'email' => 'required|max:64|unique:users,email|email:dns',
+                ]);
+                $user->email = htmlspecialchars($req->email);
+                if ($user->save()) {
+                    Session::put('user', $user->email);
+                    return '1';
+                }
+                return '2';
+            }
+            return '1';
+        }
         return '2';
     }
 }
