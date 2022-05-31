@@ -8,6 +8,8 @@
   border-radius: 0;
   text-decoration: none;
   color: #151212;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
   font-size: 62.5%;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
@@ -242,6 +244,7 @@ nav ul li .message-info::after {
   padding: 0.5rem;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+  background-color: #efefef;
 }
 
 #search-form label button img {
@@ -820,6 +823,8 @@ nav ul li .message-info::after {
   padding: 1rem;
   border-radius: 0.5rem;
   font-size: 1.6rem;
+  margin-bottom: 1rem;
+  background-color: #efefef;
 }
 
 .chat-box {
@@ -827,9 +832,10 @@ nav ul li .message-info::after {
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 1rem;
   overflow: hidden;
-  height: calc(100vh - 8.5rem);
+  height: calc(90vh - 12rem);
   margin-top: 0.7rem;
   position: relative;
+  overflow: hidden;
 }
 
 .chat-box .message-box {
@@ -903,6 +909,8 @@ nav ul li .message-info::after {
           align-items: center;
   background-color: #ffffff;
   border-top: 0.1rem solid #dddddd;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 .chat-box form .input-box {

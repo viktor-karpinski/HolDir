@@ -132,7 +132,12 @@ class Controller extends BaseController
                     File::delete(public_path('/article_images/' . $image->name));
                     $image->delete();
                 }
+                $chats = Chat::where('article_id', '=', $article->id)->get();
+                foreach ($chats as $chat) {
+                    Message::where('chat_id', $chat->id)->delete();
+                }
                 $article->delete();
+                Chat::where('article_id', '=', $article->id)->delete();
                 return redirect('profile');
             }
         }
@@ -195,7 +200,7 @@ class Controller extends BaseController
 
     public function about()
     {
-        return view('aboutus');
+        return view('about');
     }
     public function impressum()
     {

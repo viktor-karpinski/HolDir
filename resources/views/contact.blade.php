@@ -11,7 +11,7 @@
                             {{ $notuser->name }}
                         </h1>
                     @else
-                    <div class="message right">
+                    <div class="message right" id="{{ $message->id }}">
                     @endif
                         <p>
                             {{ $message->message }}
@@ -50,36 +50,39 @@
             checkForm($('#message-form'))
             scrollDown()
             $('#message').focus()
+            checkText()
         }
 
-        setInterval(() => {
-            $.ajax({
-                type: 'GET',
-                url: $('#reload-form').attr('action'),
-                data: $('#reload-form').serialize(),
-                success(data) {
-                    let lastId = $('.message:last-of-type').attr('id')
-                    for (let i = 0; i < data.length; i++) {
-                       if (data[i].id > lastId) {
-                            console.log(data[i])
-                                
+        function checkText() {
+            setTimeout(() => {
+                console.log('geht')
+                $.ajax({
+                    type: 'GET',
+                    url: $('#reload-form').attr('action'),
+                    data: $('#reload-form').serialize(),
+                    success(data) {
+                        let lastId = $('.message:last-of-type').attr('id')
+                        for (let i = 0; i < data.length; i++) {
+                        if (data[i].id > lastId) {
+                                console.log(data[i])
+                                let message = '<div id="'+data[i].id+'" class="message'
 
-                            let message = '<div id="'+data[i].id+'" class="message'
+                                if (data[i].user_id !== $('#user-id').attr('data-id')) {
+                                    message += '"><h1>'+$("#user-id").attr("data-name")+'</h1><p>'+data[i].message+'</p></div>'
+                                } else {
+                                    message += ' right"><p>'+data[i].message+'</p></>'
+                                }
 
-                            if (data[i].user_id !== $('#user-id').attr('data-id')) {
-                                message += '"><h1>'+$("#user-id").attr("data-name")+'</h1><p>'+data[i].message+'</p></div>'
-                            } else {
-                                message += ' right"><p>'+data[i].message+'</p></>'
-                            }
-
-                            console.log(message)
-                            $('.message-box').append(message)
-                            scrollDown()
-                       }
+                                console.log(message)
+                                $('.message-box').append(message)
+                                scrollDown()
+                        }
+                        }
                     }
-                }
-            })
-        }, 2000)
+                })
+                checkText()
+            }, 2000)
+        }
 
         function scrollDown() {
             $('.message-box').scrollTop($('.message-box').prop("scrollHeight"))

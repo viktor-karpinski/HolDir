@@ -24,7 +24,7 @@
 </form>
 
 <article id="about">
-<a href="/aboutus">
+<a href="/about">
     <h1>
         
         Über <span>HolDir</span>

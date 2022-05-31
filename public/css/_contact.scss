@@ -3,9 +3,10 @@
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 1rem;
     overflow: hidden;
-    height: calc(100vh - 8.5rem);
+    height: calc(90vh - 12rem);
     margin-top: 0.7rem;
     position: relative;
+    overflow: hidden;
 
     .message-box {
         width: 100%;
@@ -67,6 +68,8 @@
         align-items: center;
         background-color: #ffffff;
         border-top: 0.1rem solid #dddddd;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
 
         .input-box {
             width:  calc(100% - 5rem);
