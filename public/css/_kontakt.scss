@@ -1,0 +1,151 @@
+#kontakt {
+    width: 90%;
+    padding: 6rem;
+    margin: auto;
+    background-color: #fafafa;
+    border-radius: 0.5rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  
+
+
+    .about-section {
+        text-align: center;
+        margin-bottom: 30px;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    p {
+        font-size: 1.5rem;
+        line-height: 2.5rem;
+    }
+    .teamcontainer {
+        text-align: center;
+        margin-top: 4rem;
+    }
+    .row {
+        display: flex;
+        justify-content: center;
+    }
+    .column {
+        float: left;
+        display: flex;
+        justify-content: center;
+        width: 20%;
+        margin: 4rem 4rem;
+    }
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    img {
+        border-radius: 50%;
+        margin-bottom: 20px;
+        width: 200px;
+        height: 200px;
+    }
+
+    .info-section{
+        text-align: center;
+        margin-top: 30px;
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+    
+    .info-section p {
+        text-align: center;
+    }
+
+    @media only screen and (max-width: 950px) {
+        width: 90%;
+
+        .column { 
+            justify-content: center;
+            width: 100%;
+            margin: auto;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            
+        }
+
+        img {
+            display: grid;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            width: 200px;
+            height: 200px;
+        }
+
+        .row{
+            display: grid;
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+        }
+    
+        .info-section {
+            margin-top: 30px;
+            padding-left: 8%;
+            padding-right: 8%;
+        }
+        .info-section p {
+            text-align: center;
+        }
+
+        .container p{
+            text-align: center;
+        }
+
+        
+    
+    }
+
+
+    @media only screen and (max-width: 700px) {
+    
+        .column { 
+            justify-content: center;
+            width: 100%;
+            margin: auto;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            
+        }
+
+        img {
+            display: grid;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            width: 200px;
+            height: 200px;
+        }
+
+        .row{
+            display: grid;
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+        }
+
+        .container p{
+            text-align: center;
+        }
+
+        .about-section {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        .info-section p {
+            text-align: center;
+        }
+
+    }
+
+}
