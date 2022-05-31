@@ -15,8 +15,6 @@
     <p>Luther Tran</p>
     <p>Toni Lengerov</p>
     <p>Benedikt Szydlowski</p>
-
-    
 </article>
 
 

@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-<article id="about">
+<article id="about" class="lesser">
     <h1>
         {{ $user->name }}
     </h1>
@@ -24,6 +24,7 @@
     </a>
     @endif
 </article>
+
 <article id="article-box">
     @foreach ($articles as $article)
         <a 

@@ -5,7 +5,7 @@ $('#file').on('change', (ev) => {
 
         for (i = 0; i < filesAmount; i++) {
             var reader = new FileReader();
-
+            $('label[for="file"], .image').css('display', 'none')
             reader.onload = function(event) {
                 $($.parseHTML('<div>')).attr('class', 'image').css({'background-image': 'url("'+event.target.result+'")'}).prependTo('#image-box')
             }
@@ -20,6 +20,7 @@ $('#file').on('change', (ev) => {
 $('#reset-file').on('click', () => {
     $('#file')[0].files = new DataTransfer().files  
     $('.image').css('display', 'none')
+    $('label[for="file"]').css('display', 'inline-block')
     $('.reset-button-box').css('height', '0')
 })
 

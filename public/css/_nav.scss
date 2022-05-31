@@ -74,10 +74,14 @@ nav {
         li {
             width: auto;
             height: auto;
+            margin-right: 1.5rem;
+
+            &:last-of-type {
+                margin-right: 0;
+            }
 
             &:first-of-type {
-                margin-right: 1.5rem;
-                border: 1px solid #ec7665;
+                border: 1px solid $main;
                 border-radius: 0.5rem;
                 padding: 0.5rem;
 

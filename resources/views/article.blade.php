@@ -2,12 +2,14 @@
 
 @section('content')
 <br>
+<div id="image-box-container" class="view">
 <div id="image-box" for="file">
 @foreach ($images as $image)
     <div class="image" style="background-image: url('{{ asset('article_images/'. $image->name) }}')"></div>
 @endforeach
 </div>
 <script src="{{ asset('js/image.js') }}"></script>
+</div>
 
 <article id="about">
     <h1>
@@ -39,11 +41,15 @@
             <span>(bearbeiten)</span>
         </a>
     @else
-        <a class="button" href="/contact/{{ $article->id }}">
+        <a class="button" href="/contact/{{ $article->id }}/{{ $user->id }}">
             HolDir 
             <span>(kontaktieren)</span>
         </a>
     @endif
 </article>
+
+<script>
+$('.main').addClass('different')
+</script>
 
 @endsection

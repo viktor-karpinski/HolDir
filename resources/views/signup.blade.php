@@ -72,7 +72,7 @@
         <br>
         <div class="check-box">
             <label class="container text-link" for="signup-accept">
-                <p>Ich erkläre mich mit den <a href="/privacy-policy/" tabindex="-1" target="_blank"> AGB</a> einverstanden<p>
+                <p>Ich erkläre mich mit den <a href="/agb/" tabindex="-1" target="_blank"> AGB</a> einverstanden<p>
                 <input type="checkbox" name="accept" id="signup-accept">
                 <span class="checkmark"></span>
             </label>

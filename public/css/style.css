@@ -22,7 +22,7 @@ input {
 }
 
 body {
-  background-color: #ec7665;
+  background-color: #ffb4aa;
 }
 
 .main {
@@ -59,6 +59,7 @@ br {
   height: 1rem !important;
 }
 
+/*#ec7565;*/
 nav {
   width: 100vw;
   height: 6.1rem;
@@ -161,11 +162,15 @@ nav ul {
 nav ul li {
   width: auto;
   height: auto;
+  margin-right: 1.5rem;
+}
+
+nav ul li:last-of-type {
+  margin-right: 0;
 }
 
 nav ul li:first-of-type {
-  margin-right: 1.5rem;
-  border: 1px solid #ec7665;
+  border: 1px solid #ffb4aa;
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
@@ -283,7 +288,7 @@ nav ul li .message-info::after {
 }
 
 .radio-box.upload #mover {
-  background-color: #ec7565 !important;
+  background-color: #ffb4aa !important;
 }
 
 .radio-box .moved {
@@ -319,7 +324,7 @@ nav ul li .message-info::after {
 }
 
 #about a.link {
-  color: #ec7565;
+  color: #ffb4aa;
   font-size: 1.3rem;
   text-align: center;
   display: block;
@@ -329,7 +334,7 @@ nav ul li .message-info::after {
   font-family: "berlin sans fb demi", cursive;
   font-size: 2rem;
   width: 100%;
-  background-color: #ec7565;
+  background-color: #ffb4aa;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   height: 6rem;
@@ -485,7 +490,7 @@ nav ul li .message-info::after {
 }
 
 #form-box p a {
-  color: #ec7565;
+  color: #ffb4aa;
   font-size: 1.2rem;
 }
 
@@ -560,13 +565,13 @@ nav ul li .message-info::after {
 
 .input-form .check-box .container p a {
   font-size: 1.6rem !important;
-  color: #ec7565;
+  color: #ffb4aa;
 }
 
 .input-form .check-box .container a {
   font-size: 1.6rem;
   margin-left: 0.5rem;
-  color: #ec7565;
+  color: #ffb4aa;
 }
 
 .input-form .check-box .container.error {
@@ -607,7 +612,7 @@ nav ul li .message-info::after {
 }
 
 .input-form .check-box .container input:checked ~ .checkmark {
-  background-color: #ec7565;
+  background-color: #ffb4aa;
 }
 
 .input-form .check-box .checkmark:after {
@@ -734,7 +739,7 @@ nav ul li .message-info::after {
 }
 
 .input-form button {
-  background-color: #ec7565;
+  background-color: #ffb4aa;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
@@ -756,7 +761,7 @@ nav ul li .message-info::after {
 }
 
 .input-form .label-button {
-  background-color: #ec7565;
+  background-color: #ffb4aa;
   height: 5rem;
   border-radius: 0.5rem;
   font-size: 1.6rem;
@@ -817,6 +822,157 @@ nav ul li .message-info::after {
   font-size: 1.6rem;
 }
 
+.chat-box {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 1rem;
+  overflow: hidden;
+  height: calc(100vh - 8.5rem);
+  margin-top: 0.7rem;
+  position: relative;
+}
+
+.chat-box .message-box {
+  width: 100%;
+  height: calc(100% - 7rem);
+  padding: 2rem 1rem;
+  overflow: scroll;
+}
+
+.chat-box .message-box h2 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.chat-box .message-box .message {
+  width: 95%;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-bottom-left-radius: 0rem;
+  margin-bottom: 0.9rem;
+}
+
+.chat-box .message-box .message h1, .chat-box .message-box .message p {
+  font-size: 1.6rem;
+}
+
+.chat-box .message-box .message h1 {
+  font-weight: 900;
+}
+
+.chat-box .message-box .message p {
+  line-height: 2rem;
+}
+
+.chat-box .message-box .message.right {
+  float: right;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 0rem;
+  background-color: #ec756585;
+}
+
+.chat-box .message-box .message:last-of-type {
+  margin-bottom: -1rem;
+}
+
+.chat-box .message-box .message p {
+  word-break: break-all;
+}
+
+.chat-box form {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem 1.5rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #ffffff;
+  border-top: 0.1rem solid #dddddd;
+}
+
+.chat-box form .input-box {
+  width: calc(100% - 5rem);
+}
+
+.chat-box form .input-box .label-box {
+  height: 0;
+  overflow: hidden;
+}
+
+.chat-box form button {
+  width: 4rem;
+  height: 4rem;
+  background-color: transparent;
+  padding: 0.5rem;
+}
+
+.chat-box form button img {
+  width: 100%;
+}
+
+.chat-box form input {
+  width: 100%;
+  height: 5rem;
+  font-size: 1.6rem;
+  border: 0.1rem solid #dddddd;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.chat-about {
+  margin-bottom: 0 !important;
+}
+
+.chats-box {
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.chats-box .chat {
+  width: 100%;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  display: block;
+  margin: 1rem auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.chats-box .chat .chat-image {
+  width: 100px;
+  height: 10rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  margin-right: 2rem;
+}
+
+.chats-box .chat h2 {
+  font-size: 2rem;
+}
+
 footer {
   width: 100vw;
   border-top: solid 0.4rem rgba(0, 0, 0, 0.2);
@@ -848,5 +1004,111 @@ footer div:last-of-type {
   padding: 0rem 2rem 2rem;
   text-align: center;
   font-size: 2rem;
+}
+
+@media only screen and (min-width: 700px) {
+  .main.different #form-box, .main.different #about {
+    margin-top: 0;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    width: 80%;
+  }
+  .main.different #about {
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+  }
+  .main.even-more {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+  }
+  #image-box-container {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  nav {
+    padding: 0 14vw;
+  }
+  nav aside, nav ul {
+    padding: 0;
+  }
+  .main {
+    padding: 7.5rem 3rem 3rem;
+  }
+  #article-box {
+    -ms-grid-columns: 32% 32% 32% !important;
+        grid-template-columns: 32% 32% 32% !important;
+    grid-column-gap: 2% !important;
+  }
+  #next-box, #search-form, #about, #article-box, #form-box, .chats-box, .chat-box {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #next-box.different, #search-form.different, #about.different, #article-box.different, #form-box.different, .chats-box.different, .chat-box.different {
+    margin-right: 2rem;
+  }
+  #next-box.different:last-of-type, #search-form.different:last-of-type, #about.different:last-of-type, #article-box.different:last-of-type, #form-box.different:last-of-type, .chats-box.different:last-of-type, .chat-box.different:last-of-type {
+    margin-bottom: 0;
+    margin-right: 0rem;
+  }
+  #next-box p a, #next-box p, #search-form p a, #search-form p, #about p a, #about p, #article-box p a, #article-box p, #form-box p a, #form-box p, .chats-box p a, .chats-box p, .chat-box p a, .chat-box p {
+    font-size: 1.5rem;
+  }
+  #next-box .message-box, #search-form .message-box, #about .message-box, #article-box .message-box, #form-box .message-box, .chats-box .message-box, .chat-box .message-box {
+    padding: 3rem;
+  }
+  #next-box .message, #search-form .message, #about .message, #article-box .message, #form-box .message, .chats-box .message, .chat-box .message {
+    width: 60% !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .settings-container {
+    margin: auto;
+    width: 75%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  #next-box, #about {
+    margin-top: 3rem;
+  }
+  #next-box.lesser, #about.lesser {
+    margin-top: 1rem !important;
+  }
+  #about {
+    margin-bottom: 3rem;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .main.different {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .main.different #form-box {
+    margin-top: 0;
+    width: 60%;
+  }
+  .main.different #about {
+    width: 40%;
+  }
+  #image-box-container {
+    width: 40%;
+    margin-right: 2rem;
+  }
+  #image-box-container.view {
+    width: 50%;
+  }
 }
 /*# sourceMappingURL=style.css.map */

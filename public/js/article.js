@@ -16,5 +16,8 @@ window.onresize = () => {
 function article() {
     $('.article').find('.place-holder').css({'height': $('.article').outerWidth() + 'px'})
     $('.article').first().css({'height': 'auto'})
-    $('#article-box').css('grid-row-gap', $('#article-box').innerWidth() * 0.04 + 'px')
+    if (screen.width < 800)
+        $('#article-box').css('grid-row-gap', $('#article-box').innerWidth() * 0.04 + 'px')
+    else
+        $('#article-box').css('grid-row-gap', $('#article-box').innerWidth() * 0.02 + 'px')
 }

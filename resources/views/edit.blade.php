@@ -6,10 +6,9 @@
         Artikel / Dienst hochladen
     </h1>
 
-    <form class="input-form" id="upload-form" action="/upload/" data-action="/profile/" data-ids="#upload-name" enctype="multipart/form-data">
+    <form class="input-form" id="upload-form" action="/edit/{{$article->id}}" data-action="/article/{{$article->id}}" data-ids="#upload-name" enctype="multipart/form-data">
         @csrf
-        <input type="file" multiple name="pictures[]" accept="image/*" id="file" required>
-        <script src="{{ asset('js/file.js') }}"></script>
+        <input type="file" multiple name="pictures[]" accept="image/*" id="file">
         <div class="input-box">
             <div class="label-box">
                 <label for="upload-name">
@@ -72,26 +71,30 @@
         </button>
     </form>
 </article>
-<article id="form-box">
-    <h1 style="text-align:center">
-        Achtung! Wenn du neue Bilder auswählst, dann werden die alten gelöscht!
-    </h1>
-</article>
-<br>
-<div id="image-box" for="file">
-    <label class="placeholder" for="file">
-    </label>
-</div>
-<div class="reset-button-box">
-    <button id="reset-file">
-        Reset
-    </button>
+
+<div id="image-box-container">
+    <article id="form-box">
+        <h1 style="text-align:center">
+            Achtung! Wenn du neue Bilder auswählst, dann werden die alten gelöscht!
+        </h1>
+    </article>
+    <br>
+    <div id="image-box" for="file">
+        <label class="placeholder" for="file">
+        </label>
+    </div>
+    <div class="reset-button-box">
+        <button id="reset-file">
+            Reset
+        </button>
+    </div>
 </div>
 
 <script src="{{ asset('js/image.js') }}"></script>
-
+<script src="{{ asset('js/file.js') }}"></script>
 <script src="{{ asset('js/form.js') }}"></script>
 <script>
+$('.main').addClass('different even-more')
 $('#upload-name').on('keyup', () => {
     checkForm($('#upload-form'))
 })

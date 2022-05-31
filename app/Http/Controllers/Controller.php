@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\File;
 use App\Models\User;
 use App\Models\Article;
 use App\Models\ArticleImages;
+use App\Models\Chat;
+use App\Models\Message;
 use App\Models\PasswordReset;
 
 
@@ -149,6 +151,48 @@ class Controller extends BaseController
         return back();
     }
 
+    public function editArticle(Request $req, $id = null)
+    {
+        if ($id !== null) {
+            $article = Article::where('id', '=', $id)->first();
+            $user = User::where('email', '=', Session::get('user'))->first();
+            if ($article->user_id === $user->id) {
+                $req->validate([
+                    'name' => 'required|min:3|max:64|regex:/^[a-zA-Z0-9üÜöÖäÄ,._#+*!(){}\-;:\\/ ]{3,}$/u',
+                    'type' => 'required',
+                    'price' => 'required',
+                ]);
+
+                $article->name = htmlspecialchars($req->name);
+                $article->description = htmlspecialchars($req->description);
+                $article->price = htmlspecialchars($req->price);
+                $article->type = htmlspecialchars($req->type);
+
+                if ($article->save()) {
+                    if ($req->hasfile('pictures')) {
+                        $images = ArticleImages::where('article_id', '=', $article->id)->get();
+                        foreach ($images as $image) {
+                            File::delete(public_path('/article_images/' . $image->name));
+                            $image->delete();
+                        }
+                        foreach ($req->file('pictures') as $imagefile) {
+                            $name = Str::random(100) . '.' . $imagefile->getClientOriginalExtension();
+                            $imagefile->move(public_path('/article_images'), $name);
+                            $image = new ArticleImages();
+                            $image->name = $name;
+                            $image->article_id = $article->id;
+                            $image->save();
+                        }
+                    }
+                    return '1';
+                }
+
+                return '2';
+            }
+        }
+        return back();
+    }
+
     public function about()
     {
         return view('aboutus');
@@ -157,9 +201,88 @@ class Controller extends BaseController
     {
         return view('impressum');
     }
+    public function agb()
+    {
+        return view('agb');
+    }
+    public function datenschutz()
+    {
+        return view('datenschutz');
+    }
     public function help()
     {
         return view('help');
+    }
+
+    public function viewContact($id = null, $notuser)
+    {
+        if ($this->isLoggedIn()) {
+            $article = Article::where('id', '=', $id)->first();
+            if ($article) {
+                $user = User::where('email', '=', Session::get('user'))->first();
+                $notuser = User::where('id', '=', $notuser)->first();
+
+                $chat = Chat::where([
+                    ['article_id', '=', $article->id],
+                    ['buyer', '=', $user->id],
+                    ['seller', '=', $notuser->id]
+                ])->orWhere([
+                    ['article_id', '=', $article->id],
+                    ['buyer', '=', $notuser->id],
+                    ['seller', '=', $user->id]
+                ])->get();
+
+                $messages = null;
+                if ($chat->first()) {
+                    $messages = Message::where([
+                        ['chat_id', '=', $chat->first()->id],
+                        ['user_id', '=', $user->id]
+                    ])->orWhere([
+                        ['chat_id', '=', $chat->first()->id],
+                        ['user_id', '=', $notuser->id]
+                    ])->get();
+                }
+
+                return view('contact', [
+                    'article' => $article,
+                    'user' => $user,
+                    'notuser' => $notuser,
+                    'chat' => $chat,
+                    'messages' => $messages
+                ]);
+            }
+        }
+        $this->logoutRedirect();
+    }
+
+    public function viewChats()
+    {
+        if ($this->isLoggedIn()) {
+            $user = User::where('email', '=', Session::get('user'))->first();
+            $chats_selling = Chat::where('seller', '=', $user->id)->orderBy('id', 'desc')->get();
+            $names_selling[] = null;
+            $images_selling[] = null;
+            foreach ($chats_selling as $chat) {
+                $names_selling[] = User::where('id', '=', $chat->buyer)->first();
+                $images_selling[] = ArticleImages::where('article_id', '=', $chat->article_id)->first();
+            }
+            $chats_buying = Chat::where('buyer', '=', $user->id)->orderBy('id', 'desc')->get();
+            $names_buying[] = null;
+            $images_buying[] = null;
+            foreach ($chats_buying as $chat) {
+                $names_buying[] = User::where('id', '=', $chat->seller)->first();
+                $images_buying[] = ArticleImages::where('article_id', '=', $chat->article_id)->first();
+            }
+            return view('chats', [
+                'chats_selling' => $chats_selling,
+                'names_selling' => $names_selling,
+                'images_selling' => $images_selling,
+                'chats_buying' => $chats_buying,
+                'names_buying' => $names_buying,
+                'images_buying' => $images_buying
+            ]);
+        }
+        return redirect('/login/');
     }
 
     /* ############ ############ FUNCTIONS ############ ############*/
@@ -263,9 +386,14 @@ class Controller extends BaseController
 
     public function upload(Request $req)
     {
+        if (!$this->isLoggedIn()) {
+            $this->logoutRedirect();
+        }
+
         $req->validate([
             'name' => 'required|min:3|max:64|regex:/^[a-zA-Z0-9üÜöÖäÄ,._#+*!(){}\-;:\\/ ]{3,}$/u',
             'type' => 'required',
+            'price' => 'required',
             'pictures' => 'required'
         ]);
 
@@ -285,12 +413,15 @@ class Controller extends BaseController
                     $image = new ArticleImages();
                     $image->name = $name;
                     $image->article_id = $article->id;
-                    $image->save();
+                    if (!$image->save()) {
+                        $this->deleteArticle($article->id);
+                        return '2';
+                    }
                 }
                 return '1';
             }
         }
-
+        $this->deleteArticle($article->id);
         return '2';
     }
 
@@ -331,5 +462,83 @@ class Controller extends BaseController
             return '1';
         }
         return '2';
+    }
+
+    public function contact(Request $req, $id, $notuser)
+    {
+        if ($this->isLoggedIn()) {
+            $article = Article::where('id', '=', $id)->first();
+            if ($article) {
+                $user = User::where('email', '=', Session::get('user'))->first();
+                $notuser = User::where('id', '=', $notuser)->first();
+
+                $chat = Chat::where([
+                    ['article_id', '=', $article->id],
+                    ['buyer', '=', $user->id],
+                    ['seller', '=', $notuser->id]
+                ])->orWhere([
+                    ['article_id', '=', $article->id],
+                    ['buyer', '=', $notuser->id],
+                    ['seller', '=', $user->id]
+                ])->get();
+
+                $message = new Message();
+                $message->message = htmlspecialchars($req->message);
+                $message->user_id = $user->id;
+
+                if (!$chat->first()) {
+                    $chat = new Chat();
+                    $chat->article_id = $article->id;
+                    if ($article->user_id === $user->id) {
+                        $chat->seller = $user->id;
+                        $chat->buyer = $notuser->id;
+                    } else {
+                        $chat->seller = $notuser->id;
+                        $chat->buyer = $user->id;
+                    }
+                    $chat->save();
+                    $message->chat_id = $chat->id;
+                } else {
+                    $message->chat_id = $chat->first()->id;
+                }
+
+                if ($message->save()) {
+                    return '1';
+                }
+            }
+        }
+        return '2';
+    }
+
+    public function reloadMessages($id, $notuser)
+    {
+        $article = Article::where('id', '=', $id)->first();
+        if ($article) {
+            $user = User::where('email', '=', Session::get('user'))->first();
+            $notuser = User::where('id', '=', $notuser)->first();
+
+            $chat = Chat::where([
+                ['article_id', '=', $article->id],
+                ['buyer', '=', $user->id],
+                ['seller', '=', $notuser->id]
+            ])->orWhere([
+                ['article_id', '=', $article->id],
+                ['buyer', '=', $notuser->id],
+                ['seller', '=', $user->id]
+            ])->get();
+
+            $messages = null;
+            if ($chat->first()) {
+                $messages = Message::where([
+                    ['chat_id', '=', $chat->first()->id],
+                    ['user_id', '=', $user->id]
+                ])->orWhere([
+                    ['chat_id', '=', $chat->first()->id],
+                    ['user_id', '=', $notuser->id]
+                ])->get();
+            }
+
+            return $messages;
+        }
     }
 }

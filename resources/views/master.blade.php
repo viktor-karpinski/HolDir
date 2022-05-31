@@ -42,6 +42,11 @@
                         <img src="{{ asset('images/user.png') }}">
                     </a>
                 </li>
+                <li>
+                    <a href="/chats/" class="message-info">
+                        <img src="{{ asset('images/chat.png') }}">
+                    </a>
+                </li>
             </ul>
         </nav>
     @show
@@ -95,13 +100,13 @@
             <a href="/hilfe">
                 Hilfe und Kontakt
             </a>
-            <a>
+            <a href="agb">
                 AGB
             </a>
             <a href="/impressum">
                 Impressum
             </a>
-            <a>
+            <a href="/datenschutz">
                 Datenschutzerklärung
             </a>
         </div>

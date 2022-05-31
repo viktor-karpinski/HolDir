@@ -2,15 +2,17 @@
 
 @section('content')
 <br>
-<div id="image-box" for="file">
-    <label class="placeholder" for="file">
-    </label>
-</div>
+<div id="image-box-container">
+    <div id="image-box" for="file">
+        <label class="placeholder" for="file">
+        </label>
+    </div>
 
-<div class="reset-button-box">
-    <button id="reset-file">
-        Reset
-    </button>
+    <div class="reset-button-box">
+        <button id="reset-file">
+            Reset
+        </button>
+    </div>
 </div>
 <script src="{{ asset('js/image.js') }}"></script>
 
@@ -83,6 +85,7 @@
 
 <script src="{{ asset('js/form.js') }}"></script>
 <script>
+$('.main').addClass('different')
 $('#upload-name, #upload-description').on('keyup', () => {
     checkForm($('#upload-form'))
 })
