@@ -44,15 +44,7 @@
     @endforeach
 </article>
 <article id="next-box">
-    <a href="" class="disabled">
-        <img src="{{ asset('images/left_arrow.png') }}">
-    </a>
-
-    <p>1 / 3</p>
-
-    <a href="">
-        <img src="{{ asset('images/right_arrow.png') }}">
-    </a>
+    {{ $articles->render() }}
 </article>
 
 <script src="{{ asset('js/article.js') }}"></script>

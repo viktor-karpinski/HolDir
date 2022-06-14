@@ -43,19 +43,102 @@
     width: 100%;
     height: auto;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-top: 2rem;
 
+    nav {
+        width: 100%;
+        height: auto;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+
+        div:first-of-type {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+
+            span {
+                background-color: rgba(255, 255, 255, 0.5);
+                width: 45%;
+                height: 4rem;
+                border-radius: 0.5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: "Open Sans", sans-serif !important;
+                font-size: 1.5rem;
+            }
+
+            a {
+                width: 45% !important;
+                font-size: 1.5rem;
+            }
+        }
+
+        div:nth-of-type(2) {
+            width: 100%;
+            display: flex;
+            margin: 1rem 0 0;
+            div {
+                &:first-of-type {
+                    display: none !important;
+                }
+
+                &:nth-of-type(2) {
+                    span {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+
+                        span {
+                            &[aria-current="page"] {
+                                width: auto !important;
+                            }
+                            &[aria-disabled="true"] {
+                                display: none;
+                            }
+                            margin: 0 0.5rem;
+                        }
+
+                        a {
+                            margin: 0 0.5rem;
+                            &[rel="next"], &[rel="prev"] {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    .ease-in-out {
+                        width: auto !important;
+                        padding: 0.5rem 2rem;
+                        font-size: 1.5rem;
+                    }
+
+                    .leading-5 {
+                        width: auto !important;
+                        padding: 0.5rem 2rem;
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+        }
+    }
+
     a {
-        width: 32%;
+        width: 32% !important;
         height: 4rem;
         background-color: #fafafa;
         border-radius: 0.5rem;
         display: flex;
         justify-content: center;
         align-items: center;
+
+        svg {
+            width: 3rem !important;
+        }
 
         &.disabled {
             opacity: 0.8;

@@ -45,11 +45,18 @@
             HolDir 
             <span>(kontaktieren)</span>
         </a>
+        @if (Session::get('admin') === 1)
+            <br>
+            <a class="button" href="/delete/{{ $article->id }}">
+                GibWeg 
+            <span>(löschen)</span>
+        </a>
+        @endif
     @endif
 </article>
 
 <script>
-$('.main').addClass('different')
+    $('.main').addClass('different')
 </script>
 
 @endsection

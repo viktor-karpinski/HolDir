@@ -94,13 +94,13 @@
 <script src="{{ asset('js/file.js') }}"></script>
 <script src="{{ asset('js/form.js') }}"></script>
 <script>
-$('.main').addClass('different even-more')
-$('#upload-name').on('keyup', () => {
-    checkForm($('#upload-form'))
-})
-$('#upload-form').on('submit', (ev) => {
-    sendForm($('#upload-form'), ev)
-})
+    $('.main').addClass('different even-more')
+    $('#upload-name').on('keyup', () => {
+        checkForm($('#upload-form'))
+    })
+    $('#upload-form').on('submit', (ev) => {
+        sendForm($('#upload-form'), ev)
+    })
 </script>
 
 @endsection

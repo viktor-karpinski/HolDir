@@ -81,4 +81,9 @@
         Alle Texte sind urheberrechtlich geschützt.      
     </p>
 </article>
+<script>
+    window.onload = () => {
+        $('#loading-box').css('display', 'none')
+    }
+</script>
 @endsection

@@ -51,6 +51,7 @@
             scrollDown()
             $('#message').focus()
             checkText()
+            $('#loading-box').css('display', 'none')
         }
 
         function checkText() {

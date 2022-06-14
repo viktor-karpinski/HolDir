@@ -66,6 +66,7 @@
 window.onload = () => {
     checkForm($('#name-form'))
     checkForm($('#email-form'))
+    $('#loading-box').css('display', 'none')
 }
 $('#name').on('keyup', () => {
     checkForm($('#name-form'))

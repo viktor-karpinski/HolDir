@@ -19,7 +19,7 @@
 
 <body>
     @section('navBar')
-        <nav>
+        <nav id="nav">
             <aside>
                 <button id="burger-menu">
                     <span class="patty patty-top"></span>
@@ -50,6 +50,10 @@
             </ul>
         </nav>
     @show
+
+    <section id="loading-box">
+        <div class="loader"></div>
+    </section>
 
     @if (Session::has('remember'))
         <script>

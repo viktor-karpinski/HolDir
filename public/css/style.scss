@@ -74,6 +74,47 @@ $error: #f44336;
 @import "contact";
 @import "footer";
 
+#loading-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 9;
+}
+
+.loader {
+    border: 40px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 40px solid $main;
+    width: 220px;
+    height: 220px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+@media only screen and (min-width: 600px) {
+    #aboutusbox {
+        width: 90%;
+        grid-template-columns: 48% 48%;
+    }
+}
+
 @media only screen and (min-width: 700px) {
     .main {
         &.different {
@@ -166,6 +207,10 @@ $error: #f44336;
 }
 
 @media only screen and (min-width: 900px) {
+    #aboutusbox {
+        width: 80%;
+        grid-template-columns: 30% 30% 30%;
+    }
     .main {
         &.different {
             align-items: center;

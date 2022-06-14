@@ -35,6 +35,8 @@ Route::get('/contact/{id}/{notuser}', [Controller::class, 'viewContact']);
 Route::post('/contact/{id}/{notuser}', [Controller::class, 'contact']);
 Route::get('/contact/get/{id}/{notuser}', [Controller::class, 'reloadMessages']);
 
+Route::get('/user/{id}', [Controller::class, 'userDesleteAsAdmin']);
+
 
 Route::get('/about/', [Controller::class, 'about']);
 

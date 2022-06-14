@@ -13,15 +13,20 @@
         {{ $user->email }}
     </p>
     @if ($user->email === Session::get('user'))
-    <br>
-    <a class="button small" href="/settings/">
-        Bearbeiten
-    </a>
-    <br>
-    <br>
-    <a class="link" href="/logout/">
-        logout
-    </a>
+        <br>
+        <a class="button small" href="/settings/">
+            Bearbeiten
+        </a>
+        <br>
+        <br>
+        <a class="link" href="/logout/">
+            logout
+        </a>
+    @elseif (Session::get('admin') === 1)
+        <br>
+        <a class="button small" href="/user/{{ $user->id }}">
+            Löschen
+        </a>
     @endif
 </article>
 
@@ -46,15 +51,7 @@
     @endforeach
 </article>
 <article id="next-box">
-    <a href="" class="disabled">
-        <img src="{{ asset('images/left_arrow.png') }}">
-    </a>
-
-    <p>1 / 3</p>
-
-    <a href="">
-        <img src="{{ asset('images/right_arrow.png') }}">
-    </a>
+   {{ $articles->render() }}
 </article>
 
 <script src="{{ asset('js/article.js') }}"></script>

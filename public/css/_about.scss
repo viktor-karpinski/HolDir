@@ -62,3 +62,56 @@
         }
     }
 }
+
+
+#aboutusbox {
+    width: 100%;
+    margin: 1rem auto 0;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-column-gap: 5%;
+    grid-row-gap: 2rem;
+
+    .aboutmeandstuff {
+        width: auto;
+
+        &:nth-of-type(1) .us-image {
+            background-image: url('../creator_images/viktor.jpeg');
+        }
+
+        &:nth-of-type(2) .us-image {
+            background-image: url('../creator_images/darius.jpeg');
+        }
+
+        &:nth-of-type(3) .us-image {
+            background-image: url('../creator_images/toni.jpeg');
+        }
+
+        &:nth-of-type(4) .us-image {
+            background-image: url('../creator_images/beni.jpeg');
+        }
+
+        &:nth-of-type(5) .us-image {
+            background-image: url('../creator_images/luther.jpg');
+        }
+
+        .us-image {
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin-bottom: 1rem;
+            border-radius: 1rem;
+        }
+
+        p, h2 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+    }
+}

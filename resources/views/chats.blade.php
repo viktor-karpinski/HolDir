@@ -38,4 +38,9 @@
         </section>
     @endif
 
+<script>
+    window.onload = () => {
+        $('#loading-box').css('display', 'none')
+    }
+</script>
 @endsection

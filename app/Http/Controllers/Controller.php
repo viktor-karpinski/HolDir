@@ -28,7 +28,7 @@ class Controller extends BaseController
 
     public function main()
     {
-        $articles = Article::orderBy('id', 'desc')->skip(0)->take(10)->get();
+        $articles = Article::orderBy('id', 'desc')->paginate(12);
         $images = $this->getImages($articles);
         return view('main', ['articles' => $articles, 'images' => $images]);
     }
@@ -39,7 +39,7 @@ class Controller extends BaseController
         $articles = Article::where([
             ['name', 'LIKE', '%' . $req->input('s') . '%'],
             ['type', '=', $type]
-        ])->skip(0)->take(10)->get();
+        ])->paginate(12);
         $images[] = $images = $this->getImages($articles);
         return view('search', ['articles' => $articles, 'images' => $images]);
     }
@@ -87,7 +87,7 @@ class Controller extends BaseController
 
     public function giveProfileArticles($user)
     {
-        $articles = Article::where('user_id', '=', $user->id)->orderBy('id', 'DESC')->skip(0)->take(10)->get();
+        $articles = Article::where('user_id', '=', $user->id)->orderBy('id', 'DESC')->paginate(12);
         $images = $this->getImages($articles);
         return view('profile', ['user' => $user, 'articles' => $articles, 'images' => $images]);
     }
@@ -126,7 +126,7 @@ class Controller extends BaseController
         if ($id !== null) {
             $article = Article::where('id', '=', $id)->first();
             $user = User::where('email', '=', Session::get('user'))->first();
-            if ($article->user_id === $user->id) {
+            if ($article->user_id === $user->id || Session::get('admin') === 1) {
                 $images = ArticleImages::where('article_id', '=', $article->id)->get();
                 foreach ($images as $image) {
                     File::delete(public_path('/article_images/' . $image->name));
@@ -257,7 +257,7 @@ class Controller extends BaseController
                 ]);
             }
         }
-        $this->logoutRedirect();
+        return redirect('login');
     }
 
     public function viewChats()
@@ -287,7 +287,7 @@ class Controller extends BaseController
                 'images_buying' => $images_buying
             ]);
         }
-        return redirect('/login/');
+        return redirect('login');
     }
 
     /* ############ ############ FUNCTIONS ############ ############*/
@@ -304,6 +304,7 @@ class Controller extends BaseController
     {
         if ($this->isLoggedIn()) {
             Session::pull('user');
+            Session::pull('admin');
             Session::flash('forget', '');
         }
     }
@@ -327,6 +328,9 @@ class Controller extends BaseController
         if ($user) {
             if (Hash::check($req->password, $user->password)) {
                 Session::put('user', $user->email);
+                if ($user->admin === 1) {
+                    Session::put('admin', 1);
+                }
                 if ($remember) {
                     $token = Str::random(100);
                     $user->remember_token = $token;
@@ -357,6 +361,9 @@ class Controller extends BaseController
         ])->first();
         if ($user) {
             Session::put('user', $user->email);
+            if ($user->admin === 1) {
+                Session::put('admin', 1);
+            }
             $token = Str::random(100);
             $user->remember_token = $token;
             if ($user->save()) {
@@ -544,6 +551,20 @@ class Controller extends BaseController
             }
 
             return $messages;
+        }
+    }
+
+    public function userDesleteAsAdmin($id)
+    {
+        if ($this->isLoggedIn()) {
+            if (Session::get('admin') === 1) {
+                $articles = Article::where('user_id', '=', $id)->get();
+                foreach ($articles as $article) {
+                    $this->deleteArticle($article->id);
+                }
+                User::where('id', '=', $id)->delete();
+                return redirect('/');
+            }
         }
     }
 }

@@ -33,4 +33,10 @@
         holdir behält sich vor, diese AGB jederzeit und ohne Angabe von Gründen zu ändern. Auf die Änderung wird der Kunde durch Zusenden einer E-Mail hingewiesen. Bei Nutzung des Internetdienstes von holdir gilt die Zustimmung zu den geänderten AGB als erteilt.
     </p>
 </article>
+
+<script>
+    window.onload = () => {
+        $('#loading-box').css('display', 'none')
+    }
+</script>
 @endsection

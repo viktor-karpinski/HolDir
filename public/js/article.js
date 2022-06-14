@@ -7,6 +7,8 @@ window.onload = () => {
         if (getters[1].split('=')[1] === 's')
             $('.radio-box label[for="service"]').trigger('click')
     }
+
+    $('#loading-box').css('display', 'none')
 }
 
 window.onresize = () => {

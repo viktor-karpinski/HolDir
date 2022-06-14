@@ -54,21 +54,24 @@
             login
         </button>
     </form>
-    <br>
+    <!--<br>
     <p class="text-link" style="text-align: center">
         <a href="/forgot/">
             Passwort vergessen?
         </a>
-    </p>
+    </p>-->
 </article>
 
 <script src="{{ asset('js/form.js') }}"></script>
 <script>
-$('#login-form').on('submit', (ev) => {
-    sendForm($('#login-form'), ev)
-})
-$('button[for="login-password"]').on('click', (ev) => {
-    showPassword(ev)
-})
+    window.onload = () => {
+        $('#loading-box').css('display', 'none')
+    }
+    $('#login-form').on('submit', (ev) => {
+        sendForm($('#login-form'), ev)
+    })
+    $('button[for="login-password"]').on('click', (ev) => {
+        showPassword(ev)
+    })
 </script>
 @endsection

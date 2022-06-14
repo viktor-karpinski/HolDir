@@ -62,7 +62,7 @@ br {
 }
 
 /*#ec7565;*/
-nav {
+#nav {
   width: 100vw;
   height: 6.1rem;
   background-color: #fafafa;
@@ -86,7 +86,7 @@ nav {
   border-bottom: 0.1rem solid #dddddd;
 }
 
-nav aside {
+#nav aside {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -97,13 +97,11 @@ nav aside {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-left: 1rem;
+  padding-left: 2rem;
 }
 
-nav aside #burger-menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+#nav aside #burger-menu {
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -120,18 +118,18 @@ nav aside #burger-menu {
   margin-right: 1rem;
 }
 
-nav aside #burger-menu .patty {
+#nav aside #burger-menu .patty {
   display: block;
   width: 3rem;
   height: 0.3rem;
   background-color: #151212;
 }
 
-nav aside #burger-menu .patty-mid {
+#nav aside #burger-menu .patty-mid {
   margin: 0.5rem 0;
 }
 
-nav aside #logo-name {
+#nav aside #logo-name {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -142,12 +140,12 @@ nav aside #logo-name {
   font-family: "berlin sans fb demi", cursive;
 }
 
-nav aside #logo-name img {
+#nav aside #logo-name img {
   width: 7rem;
   margin-bottom: 1rem;
 }
 
-nav ul {
+#nav ul {
   list-style-type: none;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -161,28 +159,28 @@ nav ul {
   padding-right: 1.5rem;
 }
 
-nav ul li {
+#nav ul li {
   width: auto;
   height: auto;
   margin-right: 1.5rem;
 }
 
-nav ul li:last-of-type {
+#nav ul li:last-of-type {
   margin-right: 0;
 }
 
-nav ul li:first-of-type {
+#nav ul li:first-of-type {
   border: 1px solid #ffb4aa;
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
 
-nav ul li:first-of-type a {
+#nav ul li:first-of-type a {
   width: 2.3rem !important;
   height: 2.3rem !important;
 }
 
-nav ul li a {
+#nav ul li a {
   width: 3.5rem;
   height: 3.5rem;
   display: block;
@@ -190,11 +188,11 @@ nav ul li a {
   border-radius: 0.5rem;
 }
 
-nav ul li a img {
+#nav ul li a img {
   width: 100%;
 }
 
-nav ul li .message-info::after {
+#nav ul li .message-info::after {
   content: "";
   width: 1rem;
   height: 1rem;
@@ -378,6 +376,60 @@ nav ul li .message-info::after {
           box-shadow: 0px 0px 0px 0.3rem rgba(0, 0, 0, 0.2);
 }
 
+#aboutusbox {
+  width: 100%;
+  margin: 1rem auto 0;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 4rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100%;
+      grid-template-columns: 100%;
+  grid-column-gap: 5%;
+  grid-row-gap: 2rem;
+}
+
+#aboutusbox .aboutmeandstuff {
+  width: auto;
+}
+
+#aboutusbox .aboutmeandstuff:nth-of-type(1) .us-image {
+  background-image: url("../creator_images/viktor.jpeg");
+}
+
+#aboutusbox .aboutmeandstuff:nth-of-type(2) .us-image {
+  background-image: url("../creator_images/darius.jpeg");
+}
+
+#aboutusbox .aboutmeandstuff:nth-of-type(3) .us-image {
+  background-image: url("../creator_images/toni.jpeg");
+}
+
+#aboutusbox .aboutmeandstuff:nth-of-type(4) .us-image {
+  background-image: url("../creator_images/beni.jpeg");
+}
+
+#aboutusbox .aboutmeandstuff:nth-of-type(5) .us-image {
+  background-image: url("../creator_images/luther.jpg");
+}
+
+#aboutusbox .aboutmeandstuff .us-image {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+}
+
+#aboutusbox .aboutmeandstuff p, #aboutusbox .aboutmeandstuff h2 {
+  text-align: center;
+}
+
+#aboutusbox .aboutmeandstuff h2 {
+  margin-bottom: 1rem;
+}
+
 #article-box {
   display: -ms-grid;
   display: grid;
@@ -431,6 +483,12 @@ nav ul li .message-info::after {
 #next-box {
   width: 100%;
   height: auto;
+  margin-top: 2rem;
+}
+
+#next-box nav {
+  width: 100%;
+  height: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -440,11 +498,104 @@ nav ul li .message-info::after {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 2rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#next-box nav div:first-of-type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#next-box nav div:first-of-type span {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 45%;
+  height: 4rem;
+  border-radius: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Open Sans", sans-serif !important;
+  font-size: 1.5rem;
+}
+
+#next-box nav div:first-of-type a {
+  width: 45% !important;
+  font-size: 1.5rem;
+}
+
+#next-box nav div:nth-of-type(2) {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1rem 0 0;
+}
+
+#next-box nav div:nth-of-type(2) div:first-of-type {
+  display: none !important;
+}
+
+#next-box nav div:nth-of-type(2) div:nth-of-type(2) span {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#next-box nav div:nth-of-type(2) div:nth-of-type(2) span span {
+  margin: 0 0.5rem;
+}
+
+#next-box nav div:nth-of-type(2) div:nth-of-type(2) span span[aria-current="page"] {
+  width: auto !important;
+}
+
+#next-box nav div:nth-of-type(2) div:nth-of-type(2) span span[aria-disabled="true"] {
+  display: none;
+}
+
+#next-box nav div:nth-of-type(2) div:nth-of-type(2) span a {
+  margin: 0 0.5rem;
+}
+
+#next-box nav div:nth-of-type(2) div:nth-of-type(2) span a[rel="next"], #next-box nav div:nth-of-type(2) div:nth-of-type(2) span a[rel="prev"] {
+  display: none;
+}
+
+#next-box nav div:nth-of-type(2) div:nth-of-type(2) .ease-in-out {
+  width: auto !important;
+  padding: 0.5rem 2rem;
+  font-size: 1.5rem;
+}
+
+#next-box nav div:nth-of-type(2) div:nth-of-type(2) .leading-5 {
+  width: auto !important;
+  padding: 0.5rem 2rem;
+  font-size: 1.5rem;
 }
 
 #next-box a {
-  width: 32%;
+  width: 32% !important;
   height: 4rem;
   background-color: #fafafa;
   border-radius: 0.5rem;
@@ -457,6 +608,10 @@ nav ul li .message-info::after {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+#next-box a svg {
+  width: 3rem !important;
 }
 
 #next-box a.disabled {
@@ -1014,6 +1169,65 @@ footer div:last-of-type {
   font-size: 2rem;
 }
 
+#loading-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9;
+}
+
+.loader {
+  border: 40px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 40px solid #ffb4aa;
+  width: 220px;
+  height: 220px;
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  #aboutusbox {
+    width: 90%;
+    -ms-grid-columns: 48% 48%;
+        grid-template-columns: 48% 48%;
+  }
+}
+
 @media only screen and (min-width: 700px) {
   .main.different #form-box, .main.different #about {
     margin-top: 0;
@@ -1096,6 +1310,11 @@ footer div:last-of-type {
 }
 
 @media only screen and (min-width: 900px) {
+  #aboutusbox {
+    width: 80%;
+    -ms-grid-columns: 30% 30% 30%;
+        grid-template-columns: 30% 30% 30%;
+  }
   .main.different {
     -webkit-box-align: center;
         -ms-flex-align: center;

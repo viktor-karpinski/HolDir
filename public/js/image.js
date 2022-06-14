@@ -1,5 +1,6 @@
 window.onload = () => {
     image()
+    $('#loading-box').css('display', 'none')
 }
 
 window.onresize = () => {

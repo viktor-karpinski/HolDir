@@ -87,18 +87,21 @@
 
 <script src="{{ asset('js/form.js') }}"></script>
 <script>
-$('#signup-password, #signup-name, #signup-email').on('keyup', () => {
+    window.onload = () => {
+        $('#loading-box').css('display', 'none')
+    }
+    $('#signup-password, #signup-name, #signup-email').on('keyup', () => {
+        checkForm($('#signup-form'))
+    })
+    $('#signup-accept').on('change', () => {
     checkForm($('#signup-form'))
-})
-$('#signup-accept').on('change', () => {
-   checkForm($('#signup-form'))
-})
-$('button[for="signup-password"]').on('click', (ev) => {
-    showPassword(ev)
-})
-$('#signup-form').on('submit', (ev) => {
-    sendForm($('#signup-form'), ev)
-})
+    })
+    $('button[for="signup-password"]').on('click', (ev) => {
+        showPassword(ev)
+    })
+    $('#signup-form').on('submit', (ev) => {
+        sendForm($('#signup-form'), ev)
+    })
 </script>
 
 @endsection

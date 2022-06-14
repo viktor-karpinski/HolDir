@@ -85,13 +85,13 @@
 
 <script src="{{ asset('js/form.js') }}"></script>
 <script>
-$('.main').addClass('different')
-$('#upload-name, #upload-description').on('keyup', () => {
-    checkForm($('#upload-form'))
-})
-$('#upload-form').on('submit', (ev) => {
-    sendForm($('#upload-form'), ev)
-})
+    $('.main').addClass('different')
+    $('#upload-name, #upload-description').on('keyup', () => {
+        checkForm($('#upload-form'))
+    })
+    $('#upload-form').on('submit', (ev) => {
+        sendForm($('#upload-form'), ev)
+    })
 </script>
 
 @endsection

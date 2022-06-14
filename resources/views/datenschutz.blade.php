@@ -45,4 +45,9 @@
         Aus Sicherheitsgründen sollte der Kunde nur nachdem er selbst die URL: www. holdir.newwebsite.at in der Adresszeile des Browsers eingegeben und damit auf die holdir Seite zugegriffen hat seinen Benutzernamen/Passwort eingeben. Der Kunde ist selbst dafür verantwortlich, sofern er Zugangsdaten über gefälschte Seiten weitergegeben hat.
     </p>
 </article>
+<script>
+    window.onload = () => {
+        $('#loading-box').css('display', 'none')
+    }
+</script>
 @endsection
